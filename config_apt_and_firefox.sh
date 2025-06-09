@@ -223,6 +223,7 @@ sudo chown root:root /usr/share/icons/Breeze_Dark/
 sudo chmod -R 755 /usr/share/icons/Breeze_Dark/
 sudo dnf install -y breeze-cursor-theme > /dev/null 2>&1
 
+# configuration de gnome
 gsettings set org.gnome.desktop.interface icon-theme 'Tela-dark'
 #gsettings set org.gnome.desktop.interface cursor-theme 'Breeze_Dark'
 gsettings set org.gnome.nautilus.preferences show-delete-permanently true
@@ -249,6 +250,7 @@ gsettings set org.gnome.TextEditor highlight-current-line false
 gsettings set org.gnome.TextEditor restore-session false
 gsettings set org.gnome.TextEditor show-line-numbers true
 
+# raccourcis clavier
 BEGINNING="gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
 
 	KEY_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"

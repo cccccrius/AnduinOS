@@ -203,26 +203,80 @@ echo 'deb [signed-by=/usr/share/keyrings/onlyoffice.gpg] https://download.onlyof
 sudo apt install -y onlyoffice-desktopeditors vlc-l10n vlc gnome-shell-extension-manager pdfsam xournal gnome-tweaks
 
 # icones tela
-    wget -O /tmp/tela.zip $WGETOPT https://github.com/vinceliuice/Tela-icon-theme/archive/refs/heads/master.zip
-    cd /tmp
-    sudo \rm -rf /tmp/tela
-    sudo \rm -rf /tmp/Tela-icon-theme-master
-    mkdir -p /tmp/tela > /dev/null 2>&1
-    sudo unzip /tmp/tela.zip -d /tmp/tela > /dev/null 2>&1
-    cd /tmp/tela/Tela-icon-theme-master
-    sudo ./install.sh > /dev/null 2>&1
+wget -O /tmp/tela.zip $WGETOPT https://github.com/vinceliuice/Tela-icon-theme/archive/refs/heads/master.zip
+cd /tmp
+sudo \rm -rf /tmp/tela
+sudo \rm -rf /tmp/Tela-icon-theme-master
+mkdir -p /tmp/tela > /dev/null 2>&1
+sudo unzip /tmp/tela.zip -d /tmp/tela > /dev/null 2>&1
+cd /tmp/tela/Tela-icon-theme-master
+sudo ./install.sh > /dev/null 2>&1
 
 # curseurs breeze
-	wget -O /tmp/breeze.tar.gz $WGETOPT https://github.com/polirritmico/Breeze-Dark-Cursor/releases/download/v1.0/Breeze_Dark_v1.0.tar.gz
-	cd /tmp
-	tar -xf breeze.tar.gz >/dev/null 2>&1
-	sudo mkdir -p /usr/share/icons/Breeze_Dark/
-	sudo cp -rf /tmp/Breeze_Dark/* /usr/share/icons/Breeze_Dark/
-	\rm -rf breeze.tar.gz
-	sudo chown root:root /usr/share/icons/Breeze_Dark/
-	sudo chmod -R 755 /usr/share/icons/Breeze_Dark/
-	sudo dnf install -y breeze-cursor-theme > /dev/null 2>&1
+wget -O /tmp/breeze.tar.gz $WGETOPT https://github.com/polirritmico/Breeze-Dark-Cursor/releases/download/v1.0/Breeze_Dark_v1.0.tar.gz
+cd /tmp
+tar -xf breeze.tar.gz >/dev/null 2>&1
+sudo mkdir -p /usr/share/icons/Breeze_Dark/
+sudo cp -rf /tmp/Breeze_Dark/* /usr/share/icons/Breeze_Dark/
+\rm -rf breeze.tar.gz
+sudo chown root:root /usr/share/icons/Breeze_Dark/
+sudo chmod -R 755 /usr/share/icons/Breeze_Dark/
+sudo dnf install -y breeze-cursor-theme > /dev/null 2>&1
 
- 
-	gsettings set org.gnome.desktop.interface icon-theme 'Tela-dark'
-	#gsettings set org.gnome.desktop.interface cursor-theme 'Breeze_Dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Tela-dark'
+#gsettings set org.gnome.desktop.interface cursor-theme 'Breeze_Dark'
+gsettings set org.gnome.nautilus.preferences show-delete-permanently true
+gsettings set org.gnome.nautilus.preferences show-directory-item-counts 'always'
+gsettings set org.gnome.nautilus.preferences show-image-thumbnails 'always'
+gsettings set org.gnome.nautilus.preferences recursive-search 'always'
+gsettings set org.gtk.Settings.FileChooser sort-directories-first true
+gsettings set org.gtk.gtk4.Settings.FileChooser sort-directories-first true
+gsettings set org.gnome.desktop.calendar show-weekdate true
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
+gsettings set org.gnome.desktop.peripherals.keyboard remember-numlock-state true
+gsettings set org.gnome.desktop.peripherals.touchpad disable-while-typing true
+gsettings set org.gnome.desktop.peripherals.touchpad send-events disabled-on-external-mouse
+gsettings set org.gnome.software download-updates true
+gsettings set org.gnome.software show-only-free-apps false
+gsettings set org.gnome.desktop.privacy remove-old-temp-files true
+gsettings set org.gnome.desktop.privacy remove-old-trash-files true
+gsettings set org.gnome.desktop.privacy old-files-age "30"
+gsettings set org.gnome.desktop.privacy report-technical-problems false
+gsettings set org.gnome.desktop.privacy send-software-usage-stats false
+gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
+gsettings set org.gnome.TextEditor highlight-current-line false
+gsettings set org.gnome.TextEditor restore-session false
+gsettings set org.gnome.TextEditor show-line-numbers true
+
+BEGINNING="gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+
+	KEY_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+
+	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
+	"['$KEY_PATH/custom0/', '$KEY_PATH/custom1/', '$KEY_PATH/custom2/', '$KEY_PATH/custom3/', '$KEY_PATH/custom4/']"
+
+	# Take a screenshot of the entire display
+	$BEGINNING/custom0/ name "Take Full Screenshot"
+	$BEGINNING/custom0/ command "shutter --full"
+	$BEGINNING/custom0/ binding "Print"
+
+	# screenshot the current active window
+	$BEGINNING/custom1/ name "Grab Active Window"
+	$BEGINNING/custom1/ command "shutter --active"
+	$BEGINNING/custom1/ binding "<Alt>Print"
+
+	# Take a selection of screen with screenshot
+	$BEGINNING/custom2/ name "Screenshot Selection"
+	$BEGINNING/custom2/ command "shutter --select"
+	$BEGINNING/custom2/ binding "<Shift>Print"
+
+	# Launch Terminal
+	$BEGINNING/custom3/ name "Gnome Terminal"
+	$BEGINNING/custom3/ command "gnome-terminal"
+	$BEGINNING/custom3/ binding "<Super>Q"
+
+	# Open up file browser
+	$BEGINNING/custom4/ name "Nautilus"
+	$BEGINNING/custom4/ command "/usr/bin/nautilus --new-window"
+	$BEGINNING/custom4/ binding "<Super>E"

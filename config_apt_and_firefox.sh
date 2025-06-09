@@ -252,33 +252,32 @@ gsettings set org.gnome.TextEditor show-line-numbers true
 
 # raccourcis clavier
 BEGINNING="gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+KEY_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
 
-	KEY_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
+"['$KEY_PATH/custom0/', '$KEY_PATH/custom1/', '$KEY_PATH/custom2/', '$KEY_PATH/custom3/', '$KEY_PATH/custom4/']"
 
-	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
-	"['$KEY_PATH/custom0/', '$KEY_PATH/custom1/', '$KEY_PATH/custom2/', '$KEY_PATH/custom3/', '$KEY_PATH/custom4/']"
+# Take a screenshot of the entire display
+$BEGINNING/custom0/ name "Take Full Screenshot"
+$BEGINNING/custom0/ command "shutter --full"
+$BEGINNING/custom0/ binding "Print"
 
-	# Take a screenshot of the entire display
-	$BEGINNING/custom0/ name "Take Full Screenshot"
-	$BEGINNING/custom0/ command "shutter --full"
-	$BEGINNING/custom0/ binding "Print"
+# screenshot the current active window
+$BEGINNING/custom1/ name "Grab Active Window"
+$BEGINNING/custom1/ command "shutter --active"
+$BEGINNING/custom1/ binding "<Alt>Print"
 
-	# screenshot the current active window
-	$BEGINNING/custom1/ name "Grab Active Window"
-	$BEGINNING/custom1/ command "shutter --active"
-	$BEGINNING/custom1/ binding "<Alt>Print"
+# Take a selection of screen with screenshot
+$BEGINNING/custom2/ name "Screenshot Selection"
+$BEGINNING/custom2/ command "shutter --select"
+$BEGINNING/custom2/ binding "<Shift>Print"
 
-	# Take a selection of screen with screenshot
-	$BEGINNING/custom2/ name "Screenshot Selection"
-	$BEGINNING/custom2/ command "shutter --select"
-	$BEGINNING/custom2/ binding "<Shift>Print"
+# Launch Terminal
+$BEGINNING/custom3/ name "Gnome Terminal"
+$BEGINNING/custom3/ command "gnome-terminal"
+$BEGINNING/custom3/ binding "<Super>Q"
 
-	# Launch Terminal
-	$BEGINNING/custom3/ name "Gnome Terminal"
-	$BEGINNING/custom3/ command "gnome-terminal"
-	$BEGINNING/custom3/ binding "<Super>Q"
-
-	# Open up file browser
-	$BEGINNING/custom4/ name "Nautilus"
-	$BEGINNING/custom4/ command "/usr/bin/nautilus --new-window"
-	$BEGINNING/custom4/ binding "<Super>E"
+# Open up file browser
+$BEGINNING/custom4/ name "Nautilus"
+$BEGINNING/custom4/ command "/usr/bin/nautilus --new-window"
+$BEGINNING/custom4/ binding "<Super>E"

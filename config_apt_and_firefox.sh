@@ -200,4 +200,29 @@ sudo mv /tmp/onlyoffice.gpg /usr/share/keyrings/onlyoffice.gpg
 echo 'deb [signed-by=/usr/share/keyrings/onlyoffice.gpg] https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
 
 # installation des logiciels
-sudo apt install -y onlyoffice-desktopeditors vlc-l10n vlc gnome-shell-extension-manager pdfsam xournal
+sudo apt install -y onlyoffice-desktopeditors vlc-l10n vlc gnome-shell-extension-manager pdfsam xournal gnome-tweaks
+
+# icones tela
+    wget -O /tmp/tela.zip $WGETOPT https://github.com/vinceliuice/Tela-icon-theme/archive/refs/heads/master.zip
+    cd /tmp
+    sudo \rm -rf /tmp/tela
+    sudo \rm -rf /tmp/Tela-icon-theme-master
+    mkdir -p /tmp/tela > /dev/null 2>&1
+    sudo unzip /tmp/tela.zip -d /tmp/tela > /dev/null 2>&1
+    cd /tmp/tela/Tela-icon-theme-master
+    sudo ./install.sh > /dev/null 2>&1
+
+# curseurs breeze
+	wget -O /tmp/breeze.tar.gz $WGETOPT https://github.com/polirritmico/Breeze-Dark-Cursor/releases/download/v1.0/Breeze_Dark_v1.0.tar.gz
+	cd /tmp
+	tar -xf breeze.tar.gz >/dev/null 2>&1
+	sudo mkdir -p /usr/share/icons/Breeze_Dark/
+	sudo cp -rf /tmp/Breeze_Dark/* /usr/share/icons/Breeze_Dark/
+	\rm -rf breeze.tar.gz
+	sudo chown root:root /usr/share/icons/Breeze_Dark/
+	sudo chmod -R 755 /usr/share/icons/Breeze_Dark/
+	sudo dnf install -y breeze-cursor-theme > /dev/null 2>&1
+
+ 
+	gsettings set org.gnome.desktop.interface icon-theme 'Tela-dark'
+	#gsettings set org.gnome.desktop.interface cursor-theme 'Breeze_Dark'

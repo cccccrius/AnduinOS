@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # on met le clavier fr seulement
-gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'fr')]"
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'fr+azerty')]"
 
 # on supprime le repo firefox chinois
 sudo \rm /etc/apt/preferences.d/mozilla-firefox

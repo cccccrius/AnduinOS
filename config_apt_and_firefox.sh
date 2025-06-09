@@ -92,6 +92,8 @@ pref("media.ffmpeg.vaapi.enabled",true);
 pref("media.ffvpx.enabled",false);
 pref("media.rdd-vpx.enabled",false);
 pref("media.navigator.mediadatadecoder_vpx_enabled",true);
+pref("sidebar.visibility", "hide-sidebar");
+pref("sidebar.revamp", false);
 EOF
 
 sudo \rm /usr/lib/firefox/distribution/policies.json 2> /dev/null

@@ -99,6 +99,8 @@ pref("sidebar.visibility", "hide-sidebar");
 pref("sidebar.revamp", false);
 pref("signon.rememberSignons", false);
 pref("browser.translations.automaticallyPopup", false);
+pref("browser.startup.page", 3);
+pref("browser.shell.checkDefaultBrowser", true);
 EOF
 
 sudo \rm /usr/lib/firefox/distribution/policies.json 2> /dev/null

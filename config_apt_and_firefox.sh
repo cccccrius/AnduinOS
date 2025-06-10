@@ -94,6 +94,7 @@ pref("media.rdd-vpx.enabled",false);
 pref("media.navigator.mediadatadecoder_vpx_enabled",true);
 pref("sidebar.visibility", "hide-sidebar");
 pref("sidebar.revamp", false);
+pref("signon.rememberSignons", false);
 EOF
 
 sudo \rm /usr/lib/firefox/distribution/policies.json 2> /dev/null

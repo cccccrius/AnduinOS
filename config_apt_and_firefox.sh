@@ -98,6 +98,7 @@ pref("drm",true);
 pref("sidebar.visibility", "hide-sidebar");
 pref("sidebar.revamp", false);
 pref("signon.rememberSignons", false);
+pref("browser.translations.automaticallyPopup", false);
 EOF
 
 sudo \rm /usr/lib/firefox/distribution/policies.json 2> /dev/null

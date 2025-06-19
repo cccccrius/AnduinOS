@@ -50,10 +50,10 @@ sudo \rm /usr/lib/firefox/firefox.cfg 2> /dev/null
 sudo tee /usr/lib/firefox/firefox.cfg >/dev/null <<'EOF'
 //the first line is always a comment
 pref("network.trr.mode", 3);
-pref("network.trr.uri", "https://dns.nextdns.io/c8d79a");
-pref("network.trr.custom_uri", "https://dns.nextdns.io/c8d79a");
-pref("network.trr.bootstrapAddress", "45.90.28.181");
-pref("network.trr.default_provider_uri", "https://dns.nextdns.io/c8d79a");
+pref("network.trr.uri", "https://noads.joindns4.eu/dns-query");
+pref("network.trr.custom_uri", "https://noads.joindns4.eu/dns-query");
+pref("network.trr.bootstrapAddress", "1.0.0.2");
+pref("network.trr.default_provider_uri", "https://noads.joindns4.eu/dns-query");
 pref("extensions.autoDisableScopes", 0);
 pref("browser.aboutConfig.showWarning", false);
 pref("browser.startup.homepage", "https://www.google.fr");

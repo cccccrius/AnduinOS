@@ -3,6 +3,14 @@
 # on met le clavier fr seulement
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'fr+azerty')]"
 
+# installation only office repo
+mkdir -p -m 700 ~/.gnupg
+gpg --no-default-keyring --keyring gnupg-ring:/tmp/onlyoffice.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
+chmod 644 /tmp/onlyoffice.gpg
+sudo chown root:root /tmp/onlyoffice.gpg
+sudo mv /tmp/onlyoffice.gpg /usr/share/keyrings/onlyoffice.gpg
+echo 'deb [signed-by=/usr/share/keyrings/onlyoffice.gpg] https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
+
 # on supprime le repo firefox chinois
 sudo \rm /etc/apt/preferences.d/mozilla-firefox
 sudo \rm /etc/apt/sources.list.d/mozillateam-*
@@ -197,14 +205,6 @@ EOF
 
 # installation du vérificateur de mises à jour gnome
 sudo apt install -y gnome-packagekit # ce qui va aussi installer gnome-package-updater et gnome-packagekit-common*
-
-# installation only office repo
-mkdir -p -m 700 ~/.gnupg
-gpg --no-default-keyring --keyring gnupg-ring:/tmp/onlyoffice.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
-chmod 644 /tmp/onlyoffice.gpg
-sudo chown root:root /tmp/onlyoffice.gpg
-sudo mv /tmp/onlyoffice.gpg /usr/share/keyrings/onlyoffice.gpg
-echo 'deb [signed-by=/usr/share/keyrings/onlyoffice.gpg] https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
 
 # installation des logiciels
 sudo apt install -y onlyoffice-desktopeditors vlc-l10n vlc gnome-shell-extension-manager pdfsam xournal gnome-tweaks

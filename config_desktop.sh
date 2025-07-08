@@ -59,8 +59,8 @@ sudo tee $HOME/Bureau/mise_a_jour.desktop >/dev/null <<'EOF'
 Version=1.0
 Name=ADMIN_mise_a_jour
 Comment=ADMIN_mise_a_jour
-Exec=gnome-terminal -e "bash -c 'sudo apt update -y && sudo apt upgrade -y && flatpak update -y && cinnamon-spice-updater --update-all'"
-#Exec=ptyxis --standalone --execute "sudo sh -c 'apt update -y && apt upgrade -y && flatpak update -y && cinnamon-spice-updater --update-all'"
+Exec=gnome-terminal -e "bash -c 'sudo apt update -y && sudo apt upgrade -y && flatpak update -y'"
+#Exec=ptyxis --standalone --execute "sudo sh -c 'apt update -y && apt upgrade -y && flatpak update -y'"
 Icon=/usr/share/icons/my_icons/updater.png
 Terminal=false
 Type=Application
